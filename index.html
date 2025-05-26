@@ -143,7 +143,7 @@
       <div class="md:col-span-2 relative z-10">
         <div class="bg-gray-800 bg-opacity-50 rounded-xl p-2 border border-gray-700">
           <div class="relative pb-[177.78%] rounded-lg overflow-hidden">
-            <img src="https://placehold.co/600x800/0B0F1A/FFFFFF?text=Phone+Demo" alt="PubliTracker Demo" class="absolute inset-0 w-full h-full object-cover rounded-lg">
+            <img src="image.png" alt="PubliTracker Demo" class="absolute inset-0 w-full h-full object-cover rounded-lg">
             <div class="absolute inset-0 flex items-center justify-center">
               <div class="w-3/4 h-3/4 border-2 border-magenta rounded-md animate-pulse"></div>
             </div>
@@ -211,88 +211,75 @@
   <section class="container mx-auto px-4 py-20 relative" id="how-it-works">
     <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">Under the Hood</h2>
     
-    <div class="flex flex-col md:flex-row justify-between items-start mb-12">
-      <button class="stepper-btn active" data-step="1">
-        <span class="bg-magenta text-white w-10 h-10 rounded-full flex items-center justify-center font-bold mb-2">1</span>
-        <span class="font-medium">Connect Campaigns</span>
-      </button>
-      <div class="hidden md:block w-full h-0.5 bg-gray-700 mt-5 mx-4"></div>
-      <button class="stepper-btn" data-step="2">
-        <span class="bg-gray-700 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold mb-2">2</span>
-        <span class="font-medium">Continuous Listening</span>
-      </button>
-      <div class="hidden md:block w-full h-0.5 bg-gray-700 mt-5 mx-4"></div>
-      <button class="stepper-btn" data-step="3">
-        <span class="bg-gray-700 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold mb-2">3</span>
-        <span class="font-medium">AI Triangulation</span>
-      </button>
-      <div class="hidden md:block w-full h-0.5 bg-gray-700 mt-5 mx-4"></div>
-      <button class="stepper-btn" data-step="4">
-        <span class="bg-gray-700 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold mb-2">4</span>
-        <span class="font-medium">Instant Insight</span>
-      </button>
-      <div class="hidden md:block w-full h-0.5 bg-gray-700 mt-5 mx-4"></div>
-      <button class="stepper-btn" data-step="5">
-        <span class="bg-gray-700 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold mb-2">5</span>
-        <span class="font-medium">ROI Loop-Back</span>
-      </button>
+    <div class="flex flex-col md:flex-row items-center mb-12">
+      <div class="flex flex-row w-full items-center">
+        <button class="stepper-btn active flex flex-col items-center text-center" data-step="1">
+          <span class="bg-magenta text-white w-10 h-10 rounded-full flex items-center justify-center font-bold mb-2">1</span>
+          <span class="font-medium">Paste Influencer URL</span>
+        </button>
+        <div class="hidden md:block flex-grow h-0.5 bg-gray-700 mx-2"></div>
+        <button class="stepper-btn flex flex-col items-center text-center" data-step="2">
+          <span class="bg-gray-700 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold mb-2">2</span>
+          <span class="font-medium">AI reads posts</span>
+        </button>
+        <div class="hidden md:block flex-grow h-0.5 bg-gray-700 mx-2"></div>
+        <button class="stepper-btn flex flex-col items-center text-center" data-step="3">
+          <span class="bg-gray-700 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold mb-2">3</span>
+          <span class="font-medium">Uploads to dashboard</span>
+        </button>
+      </div>
     </div>
     
-    <div class="stepper-content bg-midnight bg-opacity-50 p-8 rounded-xl border border-gray-800">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-        <div class="step-content" id="step-1">
-          <h3 class="text-2xl font-bold mb-4">Connect Campaigns</h3>
-          <p class="text-gray-300 mb-4">Creator handles, coupon codes & key phrases into our dashboard. Set up your campaign parameters once and let PubliTracker do the rest.</p>
-          <ul class="list-disc list-inside text-gray-300 space-y-2">
-            <li>Add creator social handles</li>
-            <li>Define brand mentions and hashtags</li>
-            <li>Set tracking timeframes</li>
-          </ul>
-        </div>
-        <div class="step-content hidden" id="step-2">
-          <h3 class="text-2xl font-bold mb-4">Continuous Listening</h3>
-          <p class="text-gray-300 mb-4">24/7 ingestion of posts, shorts, lives. Our system constantly monitors all creator content across platforms without missing a beat.</p>
-          <ul class="list-disc list-inside text-gray-300 space-y-2">
-            <li>Real-time content monitoring</li>
-            <li>Cross-platform coverage</li>
-            <li>Captures all content formats</li>
-          </ul>
-        </div>
-        <div class="step-content hidden" id="step-3">
-          <h3 class="text-2xl font-bold mb-4">AI Triangulation</h3>
-          <p class="text-gray-300 mb-4">OCR + ASR + CV vote on every mention. Our advanced AI uses multiple detection methods to ensure nothing slips through the cracks.</p>
-          <ul class="list-disc list-inside text-gray-300 space-y-2">
-            <li>Optical Character Recognition for text</li>
-            <li>Automatic Speech Recognition for audio</li>
-            <li>Computer Vision for visual brand mentions</li>
-          </ul>
-        </div>
-        <div class="step-content hidden" id="step-4">
-          <h3 class="text-2xl font-bold mb-4">Instant Insight</h3>
-          <p class="text-gray-300 mb-4">Alert → evidence card → analytics. Get notified immediately when mentions happen or when promised content doesn't appear.</p>
-          <ul class="list-disc list-inside text-gray-300 space-y-2">
-            <li>Real-time notifications</li>
-            <li>Detailed evidence collection</li>
-            <li>Comprehensive analytics dashboard</li>
-          </ul>
-        </div>
-        <div class="step-content hidden" id="step-5">
-          <h3 class="text-2xl font-bold mb-4">ROI Loop-Back</h3>
-          <p class="text-gray-300 mb-4">Shopify / GA4 integration maps conversions to shout-outs. Connect your sales data to measure the true impact of influencer mentions.</p>
-          <ul class="list-disc list-inside text-gray-300 space-y-2">
-            <li>E-commerce integration</li>
-            <li>Attribution modeling</li>
-            <li>ROI calculation per creator</li>
-          </ul>
-        </div>
-        <div class="rounded-xl overflow-hidden">
-          <img src="https://placehold.co/600x400/0B0F1A/FFFFFF?text=Step+1+Demo" alt="Step 1 Demo" class="w-full h-full object-cover step-image" id="step-image-1">
-          <img src="https://placehold.co/600x400/0B0F1A/FFFFFF?text=Step+2+Demo" alt="Step 2 Demo" class="w-full h-full object-cover step-image hidden" id="step-image-2">
-          <img src="https://placehold.co/600x400/0B0F1A/FFFFFF?text=Step+3+Demo" alt="Step 3 Demo" class="w-full h-full object-cover step-image hidden" id="step-image-3">
-          <img src="https://placehold.co/600x400/0B0F1A/FFFFFF?text=Step+4+Demo" alt="Step 4 Demo" class="w-full h-full object-cover step-image hidden" id="step-image-4">
-          <img src="https://placehold.co/600x400/0B0F1A/FFFFFF?text=Step+5+Demo" alt="Step 5 Demo" class="w-full h-full object-cover step-image hidden" id="step-image-5">
+    <div class="stepper-content bg-midnight bg-opacity-50 p-8 rounded-xl border border-gray-800 flex items-center justify-center">
+      <!-- Left Arrow Button -->
+      <button id="stepper-left" class="hidden md:flex items-center justify-center w-10 h-10 rounded-full border border-gray-700 text-gray-400 hover:text-magenta hover:border-magenta transition mr-4 focus:outline-none" aria-label="Previous Step">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+      <!-- Stepper Main Content -->
+      <div class="flex-1">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <div class="step-content" id="step-1">
+            <h3 class="text-2xl font-bold mb-4">Paste Influencer URL</h3>
+            <p class="text-gray-300 mb-4">Just drop the Instagram, TikTok, or YouTube link. No manual setup, no spreadsheets.</p>
+            <ul class="list-disc list-inside text-gray-300 space-y-2">
+              <li>One-click onboarding</li>
+              <li>No CSVs or manual entry</li>
+              <li>Works for any public profile</li>
+            </ul>
+          </div>
+          <div class="step-content hidden" id="step-2">
+            <h3 class="text-2xl font-bold mb-4">AI reads posts: images, videos, audio, etc</h3>
+            <p class="text-gray-300 mb-4">Our AI scans every post, story, and video—analyzing speech, text, and visuals for brand mentions.</p>
+            <ul class="list-disc list-inside text-gray-300 space-y-2">
+              <li>Understands video, audio, and images</li>
+              <li>Detects spoken and written brand mentions</li>
+              <li>Works across all major platforms</li>
+            </ul>
+          </div>
+          <div class="step-content hidden" id="step-3">
+            <h3 class="text-2xl font-bold mb-4">Publitracker uploads everything to a live dashboard</h3>
+            <p class="text-gray-300 mb-4">All results, evidence, and analytics are instantly available in your dashboard—no waiting, no guessing.</p>
+            <ul class="list-disc list-inside text-gray-300 space-y-2">
+              <li>Live campaign tracking</li>
+              <li>Evidence cards for every mention</li>
+              <li>Exportable analytics</li>
+            </ul>
+          </div>
+          <div class="rounded-xl overflow-hidden">
+            <img src="https://placehold.co/600x400/0B0F1A/FFFFFF?text=Step+1+Demo" alt="Step 1 Demo" class="w-full h-full object-cover step-image" id="step-image-1">
+            <img src="https://placehold.co/600x400/0B0F1A/FFFFFF?text=Step+2+Demo" alt="Step 2 Demo" class="w-full h-full object-cover step-image hidden" id="step-image-2">
+            <img src="https://placehold.co/600x400/0B0F1A/FFFFFF?text=Step+3+Demo" alt="Step 3 Demo" class="w-full h-full object-cover step-image hidden" id="step-image-3">
+          </div>
         </div>
       </div>
+      <!-- Right Arrow Button -->
+      <button id="stepper-right" class="hidden md:flex items-center justify-center w-10 h-10 rounded-full border border-gray-700 text-gray-400 hover:text-magenta hover:border-magenta transition ml-4 focus:outline-none" aria-label="Next Step">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
     </div>
   </section>
   
@@ -653,35 +640,65 @@
     
     // Stepper functionality
     const stepperBtns = document.querySelectorAll('.stepper-btn');
-    
+    let currentStep = 1;
+    const totalSteps = 3;
+    const leftArrow = document.getElementById('stepper-left');
+    const rightArrow = document.getElementById('stepper-right');
+
+    function updateStepper(step) {
+      // Update active button
+      stepperBtns.forEach((b, idx) => {
+        b.classList.remove('active');
+        b.querySelector('span:first-child').classList.remove('bg-magenta');
+        b.querySelector('span:first-child').classList.add('bg-gray-700');
+        if (parseInt(b.getAttribute('data-step')) === step) {
+          b.classList.add('active');
+          b.querySelector('span:first-child').classList.remove('bg-gray-700');
+          b.querySelector('span:first-child').classList.add('bg-magenta');
+        }
+      });
+      // Update content
+      document.querySelectorAll('.step-content').forEach(content => {
+        content.classList.add('hidden');
+      });
+      document.getElementById(`step-${step}`).classList.remove('hidden');
+      // Update image
+      document.querySelectorAll('.step-image').forEach(img => {
+        img.classList.add('hidden');
+      });
+      document.getElementById(`step-image-${step}`).classList.remove('hidden');
+      // Update arrows
+      if (leftArrow) leftArrow.style.visibility = (step === 1) ? 'hidden' : 'visible';
+      if (rightArrow) rightArrow.style.visibility = (step === totalSteps) ? 'hidden' : 'visible';
+    }
+
     stepperBtns.forEach(btn => {
       btn.addEventListener('click', () => {
-        const step = btn.getAttribute('data-step');
-        
-        // Update active button
-        stepperBtns.forEach(b => {
-          b.classList.remove('active');
-          b.querySelector('span:first-child').classList.remove('bg-magenta');
-          b.querySelector('span:first-child').classList.add('bg-gray-700');
-        });
-        
-        btn.classList.add('active');
-        btn.querySelector('span:first-child').classList.remove('bg-gray-700');
-        btn.querySelector('span:first-child').classList.add('bg-magenta');
-        
-        // Update content
-        document.querySelectorAll('.step-content').forEach(content => {
-          content.classList.add('hidden');
-        });
-        document.getElementById(`step-${step}`).classList.remove('hidden');
-        
-        // Update image
-        document.querySelectorAll('.step-image').forEach(img => {
-          img.classList.add('hidden');
-        });
-        document.getElementById(`step-image-${step}`).classList.remove('hidden');
+        const step = parseInt(btn.getAttribute('data-step'));
+        currentStep = step;
+        updateStepper(currentStep);
       });
     });
+
+    if (leftArrow) {
+      leftArrow.addEventListener('click', () => {
+        if (currentStep > 1) {
+          currentStep--;
+          updateStepper(currentStep);
+        }
+      });
+    }
+    if (rightArrow) {
+      rightArrow.addEventListener('click', () => {
+        if (currentStep < totalSteps) {
+          currentStep++;
+          updateStepper(currentStep);
+        }
+      });
+    }
+
+    // Initialize stepper arrows on load
+    updateStepper(currentStep);
     
     // FAQ functionality
     function toggleFAQ(btn) {
