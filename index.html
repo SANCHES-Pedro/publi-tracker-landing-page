@@ -336,7 +336,7 @@
   <section class="container mx-auto px-4 py-20 text-center">
     <h2 class="text-3xl md:text-4xl font-bold mb-8">Join Our Beta Program</h2>
     <p class="text-xl text-gray-300 mb-12 max-w-3xl mx-auto">
-      Phase 1 closed beta: Insider Store & 3 stealth brands. Phase 2 opens July 2025—your slot awaits.
+      Phase 1 closed beta: 3 stealth brands. Phase 2 opens July 2025—your slot awaits.
     </p>
     
     <div class="bg-midnight bg-opacity-50 p-8 rounded-xl border border-gray-800 max-w-4xl mx-auto">
@@ -361,7 +361,7 @@
       <div class="bg-midnight bg-opacity-50 p-8 rounded-xl border border-gray-800 hover:border-magenta transition">
         <h3 class="text-2xl font-bold mb-4">Starter</h3>
         <p class="text-gray-300 mb-6">Perfect for brands working with up to 50 creators</p>
-        <p class="text-4xl font-bold mb-8">$199<span class="text-lg font-normal text-gray-400">/mo</span></p>
+        <p class="text-4xl font-bold mb-8">R$19<span class="text-lg font-normal text-gray-400">/mo</span></p>
         <ul class="space-y-3 mb-8">
           <li class="flex items-start">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-mint mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -587,31 +587,36 @@
         </button>
       </div>
       
-      <form id="waitlist-form" action="https://forms.gle/MESntbqj1gjRFEbC9" method="POST" target="_blank">
+      <form id="waitlist-form" action="https://formspree.io/f/mgvkjbpe" method="POST">
         <div class="space-y-4">
           <div>
             <label for="email" class="block text-sm font-medium mb-1">Work Email *</label>
-            <input type="email" id="email" name="entry.EMAIL" required class="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-magenta">
+            <input type="email" id="email" name="email" required class="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-magenta">
           </div>
           
           <div>
             <label for="company" class="block text-sm font-medium mb-1">Brand / Agency</label>
-            <input type="text" id="company" name="entry.COMPANY" class="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-magenta">
+            <input type="text" id="company" name="company" class="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-magenta">
           </div>
           
           <div>
             <label for="volume" class="block text-sm font-medium mb-1">Influencer Volume (#/month)</label>
-            <input type="number" id="volume" name="entry.VOLUME" class="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-magenta">
+            <input type="number" id="volume" name="volume" class="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-magenta">
           </div>
           
           <div>
             <label for="platform" class="block text-sm font-medium mb-1">Main Platform</label>
-            <select id="platform" name="entry.PLATFORM" class="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-magenta">
+            <select id="platform" name="platform" class="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-magenta">
               <option value="Instagram">Instagram</option>
               <option value="TikTok">TikTok</option>
               <option value="YouTube">YouTube</option>
               <option value="Other">Other</option>
             </select>
+          </div>
+
+          <div>
+            <label for="message" class="block text-sm font-medium mb-1">Additional Message</label>
+            <textarea id="message" name="message" rows="3" class="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-magenta"></textarea>
           </div>
         </div>
         
