@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PubliTracker — Know when your brand gets mentioned</title>
+  <meta name="description" content="PubliTracker listens, watches and reads every influencer post on Instagram, TikTok & YouTube so you never miss a promised mention.">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Inter Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            midnight: '#0B0F1A',
+            magenta: '#F72585',
+            sky: '#4CC9F0',
+            mint: '#BDF9DA',
+          },
+          fontFamily: {
+            'inter': ['Inter', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0B0F1A;
+      color: white;
+    }
+    
+    .diagonal-cut {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .diagonal-cut::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: inherit;
+      z-index: -1;
+      transform: skewY(-3deg);
+      transform-origin: bottom right;
+    }
+    
+    .gradient-blob {
+      position: absolute;
+      width: 40%;
+      height: 40%;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.15;
+      z-index: 0;
+    }
+    
+    .animate-marquee {
+      animation: marquee 20s linear infinite;
+    }
+    
+    @keyframes marquee {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+    
+    .modal {
+      transition: opacity 0.3s ease-out;
+    }
+    
+    .slide-up {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    }
+    
+    .slide-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body class="bg-midnight text-white">
+  <!-- Gradient blobs for background effect -->
+  <div class="gradient-blob bg-magenta top-0 left-0"></div>
+  <div class="gradient-blob bg-sky bottom-0 right-0"></div>
+  
+  <!-- Header -->
+  <header class="container mx-auto px-4 py-6 flex justify-between items-center">
+    <div class="text-2xl font-bold text-white">
+      <span class="text-magenta">Publi</span>Tracker
+    </div>
+    <nav class="hidden md:flex space-x-6">
+      <a href="#how-it-works" class="text-white hover:text-sky transition">How It Works</a>
+      <a href="#benefits" class="text-white hover:text-sky transition">Benefits</a>
+      <a href="#pricing" class="text-white hover:text-sky transition">Pricing</a>
+      <a href="#faq" class="text-white hover:text-sky transition">FAQ</a>
+    </nav>
+    <button class="bg-magenta hover:bg-opacity-90 text-white px-6 py-2 rounded-full font-medium transition" onclick="openModal()">
+      Join Waitlist
+    </button>
+  </header>
+  
+  <!-- Hero Section -->
+  <section class="container mx-auto px-4 py-16 md:py-24 relative">
+    <div class="grid grid-cols-1 md:grid-cols-5 gap-8 items-center">
+      <div class="md:col-span-3 z-10">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-black leading-tight mb-6">
+          Know the moment your brand gets dropped—or doesn't.
+        </h1>
+        <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl">
+          PubliTracker listens, watches and reads every influencer post on Instagram, TikTok & YouTube so you never miss a promised mention.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <button class="bg-magenta hover:bg-opacity-90 text-white px-8 py-3 rounded-full font-medium text-lg transition" onclick="openModal()">
+            Join the Private Beta
+          </button>
+          <a href="#how-it-works" class="bg-transparent border border-white hover:border-sky text-white hover:text-sky px-8 py-3 rounded-full font-medium text-lg transition flex items-center justify-center">
+            See How It Works ↓
+          </a>
+        </div>
+        <div class="mt-8 flex items-center">
+          <p class="text-sm text-gray-400">Backed by ML engineers from</p>
+          <div class="flex space-x-4 ml-4">
+            <div class="text-gray-400 text-sm">Meta</div>
+            <div class="text-gray-400 text-sm">ex-TikTok</div>
+            <div class="text-gray-400 text-sm">ex-Shopify</div>
+          </div>
+        </div>
+      </div>
+      <div class="md:col-span-2 relative z-10">
+        <div class="bg-gray-800 bg-opacity-50 rounded-xl p-2 border border-gray-700">
+          <div class="relative pb-[177.78%] rounded-lg overflow-hidden">
+            <img src="https://placehold.co/600x800/0B0F1A/FFFFFF?text=Phone+Demo" alt="PubliTracker Demo" class="absolute inset-0 w-full h-full object-cover rounded-lg">
+            <div class="absolute inset-0 flex items-center justify-center">
+              <div class="w-3/4 h-3/4 border-2 border-magenta rounded-md animate-pulse"></div>
+            </div>
+            <div class="absolute bottom-4 left-4 right-4 bg-black bg-opacity-70 p-2 rounded text-sm">
+              "Check out this amazing product from @brand #ad"
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Problem/Promise Strip -->
+  <section class="bg-magenta bg-opacity-10 py-16 diagonal-cut relative">
+    <div class="container mx-auto px-4">
+      <div class="overflow-hidden relative h-16">
+        <div class="animate-marquee whitespace-nowrap absolute">
+          <span class="text-2xl md:text-3xl font-bold mx-4">500 creators, 5,000 videos... and your team is still checking clips one-by-one.</span>
+          <span class="text-2xl md:text-3xl font-bold mx-4 text-magenta">Flip the script: automation that flags misses before finance wires the invoice.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Value Prop Tiles -->
+  <section class="container mx-auto px-4 py-20" id="benefits">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">Why PubliTracker?</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Tile 1 -->
+      <div class="bg-midnight bg-opacity-50 p-8 rounded-xl border border-gray-800 hover:border-magenta transition slide-up">
+        <div class="bg-magenta bg-opacity-10 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-magenta" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold mb-4">Real-time Alerts</h3>
+        <p class="text-gray-300">Slack, e-mail or webhook the second a shout-out happens—or doesn't.</p>
+      </div>
+      
+      <!-- Tile 2 -->
+      <div class="bg-midnight bg-opacity-50 p-8 rounded-xl border border-gray-800 hover:border-magenta transition slide-up" style="transition-delay: 0.1s;">
+        <div class="bg-sky bg-opacity-10 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-sky" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold mb-4">Multimodal AI Accuracy</h3>
+        <p class="text-gray-300">Speech, text and pixels cross-checked, confidence-scored.</p>
+      </div>
+      
+      <!-- Tile 3 -->
+      <div class="bg-midnight bg-opacity-50 p-8 rounded-xl border border-gray-800 hover:border-magenta transition slide-up" style="transition-delay: 0.2s;">
+        <div class="bg-mint bg-opacity-10 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-mint" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold mb-4">Audit-Ready Evidence</h3>
+        <p class="text-gray-300">Screenshots & 6-sec clips stored for contract compliance.</p>
+      </div>
+    </div>
+  </section>
+  
+  <!-- How It Works Stepper -->
+  <section class="container mx-auto px-4 py-20 relative" id="how-it-works">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">Under the Hood</h2>
+    
+    <div class="flex flex-col md:flex-row justify-between items-start mb-12">
+      <button class="stepper-btn active" data-step="1">
+        <span class="bg-magenta text-white w-10 h-10 rounded-full flex items-center justify-center font-bold mb-2">1</span>
+        <span class="font-medium">Connect Campaigns</span>
+      </button>
+      <div class="hidden md:block w-full h-0.5 bg-gray-700 mt-5 mx-4"></div>
+      <button class="stepper-btn" data-step="2">
+        <span class="bg-gray-700 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold mb-2">2</span>
+        <span class="font-medium">Continuous Listening</span>
+      </button>
+      <div class="hidden md:block w-full h-0.5 bg-gray-700 mt-5 mx-4"></div>
+      <button class="stepper-btn" data-step="3">
+        <span class="bg-gray-700 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold mb-2">3</span>
+        <span class="font-medium">AI Triangulation</span>
+      </button>
+      <div class="hidden md:block w-full h-0.5 bg-gray-700 mt-5 mx-4"></div>
+      <button class="stepper-btn" data-step="4">
+        <span class="bg-gray-700 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold mb-2">4</span>
+        <span class="font-medium">Instant Insight</span>
+      </button>
+      <div class="hidden md:block w-full h-0.5 bg-gray-700 mt-5 mx-4"></div>
+      <button class="stepper-btn" data-step="5">
+        <span class="bg-gray-700 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold mb-2">5</span>
+        <span class="font-medium">ROI Loop-Back</span>
+      </button>
+    </div>
+    
+    <div class="stepper-content bg-midnight bg-opacity-50 p-8 rounded-xl border border-gray-800">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <div class="step-content" id="step-1">
+          <h3 class="text-2xl font-bold mb-4">Connect Campaigns</h3>
+          <p class="text-gray-300 mb-4">Creator handles, coupon codes & key phrases into our dashboard. Set up your campaign parameters once and let PubliTracker do the rest.</p>
+          <ul class="list-disc list-inside text-gray-300 space-y-2">
+            <li>Add creator social handles</li>
+            <li>Define brand mentions and hashtags</li>
+            <li>Set tracking timeframes</li>
+          </ul>
+        </div>
+        <div class="step-content hidden" id="step-2">
+          <h3 class="text-2xl font-bold mb-4">Continuous Listening</h3>
+          <p class="text-gray-300 mb-4">24/7 ingestion of posts, shorts, lives. Our system constantly monitors all creator content across platforms without missing a beat.</p>
+          <ul class="list-disc list-inside text-gray-300 space-y-2">
+            <li>Real-time content monitoring</li>
+            <li>Cross-platform coverage</li>
+            <li>Captures all content formats</li>
+          </ul>
+        </div>
+        <div class="step-content hidden" id="step-3">
+          <h3 class="text-2xl font-bold mb-4">AI Triangulation</h3>
+          <p class="text-gray-300 mb-4">OCR + ASR + CV vote on every mention. Our advanced AI uses multiple detection methods to ensure nothing slips through the cracks.</p>
+          <ul class="list-disc list-inside text-gray-300 space-y-2">
+            <li>Optical Character Recognition for text</li>
+            <li>Automatic Speech Recognition for audio</li>
+            <li>Computer Vision for visual brand mentions</li>
+          </ul>
+        </div>
+        <div class="step-content hidden" id="step-4">
+          <h3 class="text-2xl font-bold mb-4">Instant Insight</h3>
+          <p class="text-gray-300 mb-4">Alert → evidence card → analytics. Get notified immediately when mentions happen or when promised content doesn't appear.</p>
+          <ul class="list-disc list-inside text-gray-300 space-y-2">
+            <li>Real-time notifications</li>
+            <li>Detailed evidence collection</li>
+            <li>Comprehensive analytics dashboard</li>
+          </ul>
+        </div>
+        <div class="step-content hidden" id="step-5">
+          <h3 class="text-2xl font-bold mb-4">ROI Loop-Back</h3>
+          <p class="text-gray-300 mb-4">Shopify / GA4 integration maps conversions to shout-outs. Connect your sales data to measure the true impact of influencer mentions.</p>
+          <ul class="list-disc list-inside text-gray-300 space-y-2">
+            <li>E-commerce integration</li>
+            <li>Attribution modeling</li>
+            <li>ROI calculation per creator</li>
+          </ul>
+        </div>
+        <div class="rounded-xl overflow-hidden">
+          <img src="https://placehold.co/600x400/0B0F1A/FFFFFF?text=Step+1+Demo" alt="Step 1 Demo" class="w-full h-full object-cover step-image" id="step-image-1">
+          <img src="https://placehold.co/600x400/0B0F1A/FFFFFF?text=Step+2+Demo" alt="Step 2 Demo" class="w-full h-full object-cover step-image hidden" id="step-image-2">
+          <img src="https://placehold.co/600x400/0B0F1A/FFFFFF?text=Step+3+Demo" alt="Step 3 Demo" class="w-full h-full object-cover step-image hidden" id="step-image-3">
+          <img src="https://placehold.co/600x400/0B0F1A/FFFFFF?text=Step+4+Demo" alt="Step 4 Demo" class="w-full h-full object-cover step-image hidden" id="step-image-4">
+          <img src="https://placehold.co/600x400/0B0F1A/FFFFFF?text=Step+5+Demo" alt="Step 5 Demo" class="w-full h-full object-cover step-image hidden" id="step-image-5">
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Benefits Table -->
+  <section class="container mx-auto px-4 py-20">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">Benefits for Growth Teams</h2>
+    
+    <div class="overflow-x-auto">
+      <table class="w-full border-collapse">
+        <thead>
+          <tr>
+            <th class="text-left p-4 bg-midnight bg-opacity-50 rounded-tl-xl">Metric</th>
+            <th class="text-left p-4 bg-midnight bg-opacity-50">Manual World</th>
+            <th class="text-left p-4 bg-midnight bg-opacity-50 rounded-tr-xl">With PubliTracker</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-gray-800">
+            <td class="p-4 bg-midnight bg-opacity-30">Verification Time</td>
+            <td class="p-4 bg-midnight bg-opacity-30 text-gray-300">~4 h / creator / month</td>
+            <td class="p-4 bg-midnight bg-opacity-30 text-mint font-medium">< 4 min (99% automated)</td>
+          </tr>
+          <tr class="border-b border-gray-800">
+            <td class="p-4 bg-midnight bg-opacity-30">Missed Mentions</td>
+            <td class="p-4 bg-midnight bg-opacity-30 text-gray-300">~12% undetected</td>
+            <td class="p-4 bg-midnight bg-opacity-30 text-mint font-medium">< 1% (confidence-scored)</td>
+          </tr>
+          <tr>
+            <td class="p-4 bg-midnight bg-opacity-30 rounded-bl-xl">Campaign Debrief</td>
+            <td class="p-4 bg-midnight bg-opacity-30 text-gray-300">Next quarter</td>
+            <td class="p-4 bg-midnight bg-opacity-30 text-mint font-medium rounded-br-xl">Live dashboard</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <p class="text-sm text-gray-400 mt-4 text-center">Data sampled from pilot with a 600M R$ Brazilian DTC brand.</p>
+  </section>
+  
+  <!-- Social Proof & Roadmap -->
+  <section class="container mx-auto px-4 py-20 text-center">
+    <h2 class="text-3xl md:text-4xl font-bold mb-8">Join Our Beta Program</h2>
+    <p class="text-xl text-gray-300 mb-12 max-w-3xl mx-auto">
+      Phase 1 closed beta: Insider Store & 3 stealth brands. Phase 2 opens July 2025—your slot awaits.
+    </p>
+    
+    <div class="bg-midnight bg-opacity-50 p-8 rounded-xl border border-gray-800 max-w-4xl mx-auto">
+      <div class="flex items-center mb-6">
+        <div class="w-12 h-12 bg-gray-700 rounded-full mr-4"></div>
+        <div class="text-left">
+          <p class="font-medium">Maria Silva</p>
+          <p class="text-sm text-gray-400">Head of Influencer Marketing, Major DTC Brand</p>
+        </div>
+      </div>
+      <p class="text-gray-300 italic">
+        "PubliTracker has completely transformed how we manage our influencer campaigns. We've reduced verification time by 95% and caught several missed mentions that would have gone unnoticed."
+      </p>
+    </div>
+  </section>
+  
+  <!-- Pricing Preview -->
+  <section class="container mx-auto px-4 py-20" id="pricing">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">Pricing</h2>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+      <div class="bg-midnight bg-opacity-50 p-8 rounded-xl border border-gray-800 hover:border-magenta transition">
+        <h3 class="text-2xl font-bold mb-4">Starter</h3>
+        <p class="text-gray-300 mb-6">Perfect for brands working with up to 50 creators</p>
+        <p class="text-4xl font-bold mb-8">$199<span class="text-lg font-normal text-gray-400">/mo</span></p>
+        <ul class="space-y-3 mb-8">
+          <li class="flex items-start">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-mint mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <span>Up to 50 creators</span>
+          </li>
+          <li class="flex items-start">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-mint mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <span>All core features</span>
+          </li>
+          <li class="flex items-start">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-mint mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <span>Email + Slack notifications</span>
+          </li>
+          <li class="flex items-start">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-mint mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <span>30-day evidence storage</span>
+          </li>
+        </ul>
+        <button class="w-full bg-magenta hover:bg-opacity-90 text-white px-6 py-3 rounded-full font-medium transition" onclick="openModal()">
+          Join Waitlist
+        </button>
+      </div>
+      
+      <div class="bg-midnight bg-opacity-50 p-8 rounded-xl border border-gray-800 hover:border-sky transition">
+        <h3 class="text-2xl font-bold mb-4">Enterprise</h3>
+        <p class="text-gray-300 mb-6">For brands with extensive influencer programs</p>
+        <p class="text-4xl font-bold mb-8">Let's Talk</p>
+        <ul class="space-y-3 mb-8">
+          <li class="flex items-start">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-sky mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <span>Unlimited creators</span>
+          </li>
+          <li class="flex items-start">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-sky mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <span>Advanced analytics</span>
+          </li>
+          <li class="flex items-start">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-sky mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <span>API access</span>
+          </li>
+          <li class="flex items-start">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-sky mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <span>Dedicated account manager</span>
+          </li>
+        </ul>
+        <button class="w-full bg-sky hover:bg-opacity-90 text-white px-6 py-3 rounded-full font-medium transition" onclick="openModal()">
+          Contact Sales
+        </button>
+      </div>
+    </div>
+    
+    <p class="text-center text-gray-300 mt-8">Founding-customer discounts for wait-list sign-ups.</p>
+  </section>
+  
+  <!-- Security/Privacy Ribbon -->
+  <section class="bg-midnight bg-opacity-70 py-10">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12">
+        <div class="flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-mint mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+          </svg>
+          <span>GDPR-ready</span>
+        </div>
+        <div class="flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-mint mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
+          <span>Read-only OAuth scopes</span>
+        </div>
+        <div class="flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-mint mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2" />
+          </svg>
+          <span>Data encrypted in transit & at rest</span>
+        </div>
+      </div>
+      <p class="text-center text-gray-400 mt-6 max-w-3xl mx-auto">
+        PubliTracker is committed to maintaining the highest standards of data security and privacy. We only access the data necessary to provide our services and never share your information with third parties.
+      </p>
+    </div>
+  </section>
+  
+  <!-- FAQ Accordion -->
+  <section class="container mx-auto px-4 py-20" id="faq">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">Frequently Asked Questions</h2>
+    
+    <div class="max-w-3xl mx-auto space-y-6">
+      <!-- FAQ Item 1 -->
+      <div class="bg-midnight bg-opacity-50 rounded-xl border border-gray-800">
+        <button class="faq-btn flex justify-between items-center w-full p-6 text-left" onclick="toggleFAQ(this)">
+          <span class="text-xl font-medium">Does it work with podcasts?</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 transform transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div class="faq-content hidden px-6 pb-6">
+          <p class="text-gray-300">Yes, PubliTracker works with podcasts via YouTube & RSS ingestion. Our system can analyze audio content to detect brand mentions and track promotional codes used in podcast episodes.</p>
+        </div>
+      </div>
+      
+      <!-- FAQ Item 2 -->
+      <div class="bg-midnight bg-opacity-50 rounded-xl border border-gray-800">
+        <button class="faq-btn flex justify-between items-center w-full p-6 text-left" onclick="toggleFAQ(this)">
+          <span class="text-xl font-medium">Can I push data to Looker / Tableau?</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 transform transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div class="faq-content hidden px-6 pb-6">
+          <p class="text-gray-300">PubliTracker offers webhook and API integration options that allow you to push data to your preferred business intelligence tools, including Looker and Tableau.</p>
+        </div>
+      </div>
+      
+      <!-- FAQ Item 3 -->
+      <div class="bg-midnight bg-opacity-50 rounded-xl border border-gray-800">
+        <button class="faq-btn flex justify-between items-center w-full p-6 text-left" onclick="toggleFAQ(this)">
+          <span class="text-xl font-medium">What's the accuracy rate?</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 transform transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div class="faq-content hidden px-6 pb-6">
+          <p class="text-gray-300">Our internal benchmarks show a 92% F1 score across 30k videos. This means PubliTracker has both high precision (few false positives) and high recall (few false negatives) when detecting brand mentions.</p>
+        </div>
+      </div>
+      
+      <!-- FAQ Item 4 -->
+      <div class="bg-midnight bg-opacity-50 rounded-xl border border-gray-800">
+        <button class="faq-btn flex justify-between items-center w-full p-6 text-left" onclick="toggleFAQ(this)">
+          <span class="text-xl font-medium">Will you support Twitch / Twitter?</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 transform transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div class="faq-content hidden px-6 pb-6">
+          <p class="text-gray-300">Yes, support for Twitch and Twitter (X) is on our roadmap for Q4 2025. We're continuously expanding our platform coverage to ensure you can track brand mentions across all relevant social media channels.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer class="bg-midnight bg-opacity-70 py-16">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div class="md:col-span-2">
+          <div class="text-2xl font-bold text-white mb-4">
+            <span class="text-magenta">Publi</span>Tracker
+          </div>
+          <p class="text-gray-400 mb-6">Stop doom-scrolling your own ads, let the robots do it.</p>
+          <p class="text-gray-400">Não deixe nenhum #publi passar batido.</p>
+        </div>
+        
+        <div>
+          <h3 class="text-lg font-bold mb-4">Company</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-400 hover:text-white transition">About</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white transition">Careers</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white transition">Blog</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="text-lg font-bold mb-4">Legal</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-400 hover:text-white transition">Privacy Policy</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white transition">Terms of Service</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white transition">Cookie Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+        <p class="text-gray-400 mb-4 md:mb-0">© 2025 PubliTracker. All rights reserved.</p>
+        
+        <div class="flex space-x-6">
+          <a href="#" class="text-gray-400 hover:text-white transition">
+            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd"></path>
+            </svg>
+          </a>
+          <a href="#" class="text-gray-400 hover:text-white transition">
+            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd"></path>
+            </svg>
+          </a>
+          <a href="#" class="text-gray-400 hover:text-white transition">
+            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  
+  <!-- Waitlist Modal -->
+  <div id="waitlist-modal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 hidden modal">
+    <div class="bg-midnight border border-gray-800 rounded-xl p-8 max-w-md w-full mx-4">
+      <div class="flex justify-between items-center mb-6">
+        <h3 class="text-2xl font-bold">Join the Private Beta</h3>
+        <button onclick="closeModal()" class="text-gray-400 hover:text-white">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      
+      <form id="waitlist-form" action="https://forms.gle/MESntbqj1gjRFEbC9" method="POST" target="_blank">
+        <div class="space-y-4">
+          <div>
+            <label for="email" class="block text-sm font-medium mb-1">Work Email *</label>
+            <input type="email" id="email" name="entry.EMAIL" required class="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-magenta">
+          </div>
+          
+          <div>
+            <label for="company" class="block text-sm font-medium mb-1">Brand / Agency</label>
+            <input type="text" id="company" name="entry.COMPANY" class="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-magenta">
+          </div>
+          
+          <div>
+            <label for="volume" class="block text-sm font-medium mb-1">Influencer Volume (#/month)</label>
+            <input type="number" id="volume" name="entry.VOLUME" class="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-magenta">
+          </div>
+          
+          <div>
+            <label for="platform" class="block text-sm font-medium mb-1">Main Platform</label>
+            <select id="platform" name="entry.PLATFORM" class="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-magenta">
+              <option value="Instagram">Instagram</option>
+              <option value="TikTok">TikTok</option>
+              <option value="YouTube">YouTube</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+        </div>
+        
+        <button type="submit" class="w-full bg-magenta hover:bg-opacity-90 text-white px-6 py-3 rounded-full font-medium transition mt-6">
+          Submit Application
+        </button>
+        
+        <p class="text-sm text-gray-400 mt-4 text-center">
+          ⚡ We'll review applications weekly and onboard early adopters in batches of 20.
+        </p>
+      </form>
+    </div>
+  </div>
+  
+  <script>
+    // Modal functions
+    function openModal() {
+      document.getElementById('waitlist-modal').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeModal() {
+      document.getElementById('waitlist-modal').classList.add('hidden');
+      document.body.style.overflow = 'auto';
+    }
+    
+    // Close modal when clicking outside
+    window.addEventListener('click', function(event) {
+      const modal = document.getElementById('waitlist-modal');
+      if (event.target === modal) {
+        closeModal();
+      }
+    });
+    
+    // Stepper functionality
+    const stepperBtns = document.querySelectorAll('.stepper-btn');
+    
+    stepperBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const step = btn.getAttribute('data-step');
+        
+        // Update active button
+        stepperBtns.forEach(b => {
+          b.classList.remove('active');
+          b.querySelector('span:first-child').classList.remove('bg-magenta');
+          b.querySelector('span:first-child').classList.add('bg-gray-700');
+        });
+        
+        btn.classList.add('active');
+        btn.querySelector('span:first-child').classList.remove('bg-gray-700');
+        btn.querySelector('span:first-child').classList.add('bg-magenta');
+        
+        // Update content
+        document.querySelectorAll('.step-content').forEach(content => {
+          content.classList.add('hidden');
+        });
+        document.getElementById(`step-${step}`).classList.remove('hidden');
+        
+        // Update image
+        document.querySelectorAll('.step-image').forEach(img => {
+          img.classList.add('hidden');
+        });
+        document.getElementById(`step-image-${step}`).classList.remove('hidden');
+      });
+    });
+    
+    // FAQ functionality
+    function toggleFAQ(btn) {
+      const content = btn.nextElementSibling;
+      const icon = btn.querySelector('svg');
+      
+      if (content.classList.contains('hidden')) {
+        content.classList.remove('hidden');
+        icon.classList.add('rotate-180');
+      } else {
+        content.classList.add('hidden');
+        icon.classList.remove('rotate-180');
+      }
+    }
+    
+    // Scroll animations
+    document.addEventListener('DOMContentLoaded', function() {
+      const slideUpElements = document.querySelectorAll('.slide-up');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      slideUpElements.forEach(element => {
+        observer.observe(element);
+      });
+    });
+    
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
+</body>
+</html>
