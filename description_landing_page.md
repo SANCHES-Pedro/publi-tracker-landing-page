@@ -2,6 +2,7 @@ PubliTracker — Waiting-List Landing Page Blueprint
 
 Goal: capture qualified leads (e-mail + optional company + influencer-volume field) for private beta.
 
+Another commit
 ⸻
 
 1 · Above-the-Fold “Hero”
