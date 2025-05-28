@@ -18,6 +18,14 @@
   <script src="https://analytics.ahrefs.com/analytics.js" data-key="j6Ikk91C1Ok5Vwn5ZdvSvw" async></script>
   
   <script>
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init be ys Ss me gs ws capture Ne calculateEventProperties xs register register_once register_for_session unregister unregister_for_session Rs getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey canRenderSurveyAsync identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty Is ks createPersonProfile Ps bs opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing $s debug Es getPageViewId captureTraceFeedback captureTraceMetric".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    posthog.init('phc_v9cyeH06fet9x4DaCdsyNjNOTsjJdx5ZY6kQ9yX9rB5', {
+        api_host: 'https://us.i.posthog.com',
+        person_profiles: 'identified_only', // or 'always' to create profiles for anonymous users as well
+    })
+</script>
+
+  <script>
     tailwind.config = {
       theme: {
         extend: {
@@ -111,7 +119,7 @@
       <a href="#pricing" class="text-white hover:text-sky transition">Preços</a>
       <a href="#faq" class="text-white hover:text-sky transition">FAQ</a>
     </nav>
-    <button class="bg-magenta hover:bg-opacity-90 text-white px-6 py-2 rounded-full font-medium transition" onclick="openModal()">
+    <button class="bg-magenta hover:bg-opacity-90 text-white px-6 py-2 rounded-full font-medium transition" onclick="openModal(); posthog.capture('waitlist_button_clicked', { location: 'header' })">
       Entrar na Lista
     </button>
   </header>
@@ -127,8 +135,8 @@
           PubliTracker monitora, assiste e lê cada post de influenciador no Instagram, TikTok e YouTube para que você nunca perca uma menção prometida.
         </p>
         <div class="flex flex-col sm:flex-row gap-4">
-          <button class="bg-magenta hover:bg-opacity-90 text-white px-8 py-3 rounded-full font-medium text-lg transition" onclick="openModal()">
-            Entrar no Beta Privado
+          <button class="bg-magenta hover:bg-opacity-90 text-white px-8 py-3 rounded-full font-medium text-lg transition" onclick="openModal(); posthog.capture('beta_button_clicked', { location: 'hero' })">
+            Increver no Beta Privado
           </button>
           <a href="#how-it-works" class="bg-transparent border border-white hover:border-sky text-white hover:text-sky px-8 py-3 rounded-full font-medium text-lg transition flex items-center justify-center">
             Ver Como Funciona ↓
@@ -378,7 +386,7 @@
             <span>Armazenamento de evidências por 30 dias</span>
           </li>
         </ul>
-        <button class="w-full bg-magenta hover:bg-opacity-90 text-white px-6 py-3 rounded-full font-medium transition" onclick="openModal()">
+        <button class="w-full bg-magenta hover:bg-opacity-90 text-white px-6 py-3 rounded-full font-medium transition" onclick="openModal(); posthog.capture('waitlist_button_clicked', { location: 'pricing_starter' })">
           Entrar na Lista
         </button>
       </div>
@@ -413,7 +421,7 @@
             <span>Gerente de conta dedicado</span>
           </li>
         </ul>
-        <button class="w-full bg-sky hover:bg-opacity-90 text-white px-6 py-3 rounded-full font-medium transition" onclick="openModal()">
+        <button class="w-full bg-sky hover:bg-opacity-90 text-white px-6 py-3 rounded-full font-medium transition" onclick="openModal(); posthog.capture('waitlist_button_clicked', { location: 'pricing_enterprise' })">
           Falar com Vendas
         </button>
       </div>
@@ -626,11 +634,13 @@
     function openModal() {
       document.getElementById('waitlist-modal').classList.remove('hidden');
       document.body.style.overflow = 'hidden';
+      posthog.capture('waitlist_modal_opened');
     }
     
     function closeModal() {
       document.getElementById('waitlist-modal').classList.add('hidden');
       document.body.style.overflow = 'auto';
+      posthog.capture('waitlist_modal_closed');
     }
     
     // Close modal when clicking outside
@@ -673,6 +683,9 @@
       // Update arrows
       if (leftArrow) leftArrow.style.visibility = (step === 1) ? 'hidden' : 'visible';
       if (rightArrow) rightArrow.style.visibility = (step === totalSteps) ? 'hidden' : 'visible';
+      
+      // Track step change
+      posthog.capture('how_it_works_step_changed', { step: step });
     }
 
     stepperBtns.forEach(btn => {
@@ -707,15 +720,53 @@
     function toggleFAQ(btn) {
       const content = btn.nextElementSibling;
       const icon = btn.querySelector('svg');
+      const question = btn.querySelector('span').textContent;
       
       if (content.classList.contains('hidden')) {
         content.classList.remove('hidden');
         icon.classList.add('rotate-180');
+        posthog.capture('faq_opened', { question: question });
       } else {
         content.classList.add('hidden');
         icon.classList.remove('rotate-180');
+        posthog.capture('faq_closed', { question: question });
       }
     }
+    
+    // Track form submission
+    document.getElementById('waitlist-form').addEventListener('submit', function(e) {
+      const formData = new FormData(this);
+      const formProps = Object.fromEntries(formData);
+      posthog.capture('waitlist_form_submitted', formProps);
+    });
+
+    // Track navigation clicks
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', function(e) {
+        const section = this.getAttribute('href').substring(1);
+        posthog.capture('navigation_clicked', { section: section });
+      });
+    });
+
+    // Track pricing plan clicks
+    document.querySelectorAll('#pricing button').forEach(button => {
+      button.addEventListener('click', function() {
+        const plan = this.closest('.bg-midnight').querySelector('h3').textContent;
+        posthog.capture('pricing_plan_clicked', { plan: plan });
+      });
+    });
+
+    // Track scroll depth
+    let maxScroll = 0;
+    window.addEventListener('scroll', function() {
+      const scrollPercent = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight * 100;
+      if (scrollPercent > maxScroll) {
+        maxScroll = scrollPercent;
+        if (maxScroll % 25 === 0) { // Track at 25%, 50%, 75%, 100%
+          posthog.capture('scroll_depth_reached', { depth: maxScroll });
+        }
+      }
+    });
     
     // Scroll animations
     document.addEventListener('DOMContentLoaded', function() {
